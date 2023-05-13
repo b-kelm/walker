@@ -7,7 +7,6 @@
 #include "Wire.h"
 #include <MPU6050_light.h>
 
-elapsedMillis loopTime;
 
 
 MPU6050 mpu(Wire);
@@ -51,6 +50,7 @@ void setup() {
 }
 
 void loop() {
+  elapsedMillis loopTime;
   mpu.update();
   
   if((millis()-timer)>10){ // print data every 10ms
@@ -71,10 +71,10 @@ void loop() {
 
 // Control Law - Full State Feedback
 // Gains
-  k_theta = 48*PI/90*6; // 12
-  k_omega = 8*PI/90*2; // 8
+  k_theta = 48*PI/180*3.8; // 12
+  k_omega = 8*PI/180*3.8; // 8
   // k_theta_V = 13; //  P Gain
-  k_I_theta = 0.005/600; // I Integrator Gain 0.02
+  k_I_theta = 0.2; // I Integrator Gain 0.02
 
   theta_0 = 14;
   omega_0 = 0;
